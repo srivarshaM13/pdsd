@@ -1,0 +1,78 @@
+4:1 Multiplexer
+module mux (i0,i1,i2,i3,s0,s1,y);
+input s0,s1,i0,i1,i2,i3;
+output y;
+assign y= (~s0 & ~s1 &i0)| (~s0 & s1 &i1) | (s0 & ~s1 &i2) | (s0 & s1 &i3);
+endmodule
+
+1:4 demultiplexer
+module demultiplexer (Y, D, S);
+input [1:0] S;
+input D;
+output [3:0] Y;
+assign Y[0] =D&~S[1]& ~S[0];
+assign Y[1] =D& ~S[1] &S[0];
+assign Y[2] =D&S[1]& ~S[0];
+assign Y[3] =D&S[1]&S[0];
+end module
+
+4 to 1 multiplexer
+module m41 ( a, b, c, d, s0, s1, out);
+input wire a, b, c, d;
+input wire s0, s1;
+output reg out;
+always @ (a or b or c or d or s0, s1)
+begin
+case (s0 | s1)
+2'b00 : out <= a;
+2'b01 : out <= b;
+2'b10 : out <= c;
+2'b11 : out <= d;
+endcase
+end
+endmodule
+
+1 to 4 demultiplexer
+module demux (d,s,y);
+input d;
+input [2:0]s;
+output reg [3:0]y;
+always @ (s or d)
+case (s)
+2'b00 : begin y[0]=d; y[1]=0; y[2]=0; y[3]=0; end
+2'b01 : begin y[0]=0; y[1]=d; y[2]=0; y[3]=0; end
+2'b10 : begin y[0]=0; y[1]=0; y[2]=d; y[3]=0; end
+2'b11 : begin y[0]=0; y[1]=0; y[2]=0; y[3]=d; end
+endcase
+endmodule
+
+4:1 Multiplexer
+
+module multiplexer (Y, D, S);
+output Y;
+input [1:0]S;
+input [3:0]D;
+wire C1, C2, C3, C4, S0bar, S1bar;
+not g1(S1bar, S[1] );
+not g2(S0bar, S[0] );
+and g3(C1 S0bar, S1bar, D[0] );
+and g4 (C2, S[0] ,S1bar, D[1]);
+and g5(C3 S0bar, S[1], D[2]);
+and g6(C4,S[0] S[1], D[3]);
+or g7 (Y, C1, C2, C3, C4);
+endmodule
+
+1 to 4 Demultiplexer
+
+module demultiplexer (Y, D, S);
+output [3:0] Y;
+input [1:0] S;
+input D;
+wire S1bar, S0bar;
+not g1( S0bar, S[0]);
+not g2 (S1bar, S[1] );
+and g3 (Y[0], S0bar, S1bar, D);
+and g4 (Y[1], S[0], S1bar, D);
+and g5 (Y[2], S0 bar, S[1], D);
+and g6 (Y[3], S[0], S[1], D);
+endmodule
