@@ -1,0 +1,6 @@
+ORG 0000H ; Starting address
+MOV A, #05H ; Load first number (5) into Accumulator
+MOV R0, #03H ; Load second number (3) into Register R0
+ADD A, R0 ; A = A + R0
+MOV R1, A ; Store result in R1
+END
