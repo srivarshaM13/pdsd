@@ -1,0 +1,17 @@
+2-to-4 decoder
+module decoder (a,b,y);
+output [3:0]y;
+input a,b;
+assign y[0]= ~a & ~b;
+assign y[1]= ~a & b;
+assign y[2]= a & ~b;
+assign y[3]= a & b;
+endmodule
+
+4-to-2 encoder
+module encoder (X,Y, D);
+input [3:0] D;
+output X,Y;
+assign X= D[2]|D[3];
+assign Y= D[1]|D[3];
+end module
