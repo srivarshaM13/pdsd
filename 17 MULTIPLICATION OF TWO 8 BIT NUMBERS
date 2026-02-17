@@ -1,0 +1,7 @@
+ORG 0000H ; Starting address
+MOV A, #03H ; Load first number (3) into Accumulator
+MOV B, #02H ; Load second number (2) into Register B
+MUL AB ; Multiply A × B ? Result: (B:A) = 06H
+MOV R1, A ; Store lower 8-bit result in R1
+MOV R2, B ; Store higher 8-bit result in R2 (if > 255)
+END
