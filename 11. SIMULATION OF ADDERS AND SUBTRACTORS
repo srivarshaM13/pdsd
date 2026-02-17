@@ -1,0 +1,110 @@
+Full subtractor
+
+module fullsub(D, B0, A, B, Bin);
+input A, B, Bin;
+output D, B0;
+wire D1, C1, C2, C3, C4;
+xor g1(D1, A, B);
+not g2 (C1, A);
+and g3(C2,C1,B);
+xor g4(D,D1,Bin);
+not g5 (C3, D1);
+and g6(C4, C3, Bin);
+or g7(B0, C2, C4);
+endmodule
+
+DATAFLOW MODELING
+Half Adder
+module half_adder(a,b,sum,carry);
+input a,b;
+output sum,carry;
+assign sum=a^b;
+assign carry=a&b;
+endmodule
+Full Adder
+module full_adder(a,b,c,sum,carry);
+input a,b,c;
+output sum,carry;
+assign sum=a^b^c;
+assign carry=a&b|b&c|c&a;
+endmodule
+
+
+
+DATAFLOW MODELING
+Half subtractor
+module half_subtractor(a,b, difference, borrow );
+input a,b;
+output difference, borrow;
+assign difference=a^b;
+assign borrow=((~a)&b);
+endmodule
+
+Full Subtractor
+module full_ subtractor (a,b,c, difference, borrow);
+input a,b,c;
+output difference, borrow;
+assign difference=a^b^c;
+assign borrow =(~a)&b)|(b&c)|(c&(~a);
+endmodule
+Behavioural Modeling
+Half adder
+module half_adder(a,b,sum,carry);
+input a,b;
+output reg sum,carry;
+always @ (a or b)
+begin
+sum=a^b;
+carry=a&b;
+end
+endmodule
+
+Full adder
+module full_adder(a,b,c,sum,carry);
+input a,b,c;
+output reg sum,carry;
+always @ (a or b or c)
+begin
+sum=a^b^c;
+carry=(a&b)|(b&c)|(c&a);
+end
+endmodule
+
+
+
+WAVEFORM:
+Half Adder
+
+Full adder
+
+Half Subtractor
+
+Full Subtractor
+
+
+
+Behavioural Modeling
+Half subtractor
+module half_subtractor(a,b, difference, borrow );
+input a,b;
+output reg difference, borrow;
+always @ (a or b)
+begin
+difference=a^b;
+borrow=((~a)&b);
+end
+endmodule
+Full Subtractor
+module full_ subtractor (a,b,c,difference, borrow);
+input a,b,c;
+output reg difference, borrow;
+always @ (a or b or c)
+begin
+difference=a^b^c;
+borrow=((~a)&b)|(b&c)|(c&(~a));
+end
+endmodule
+
+RESULT:
+Thus, the half adder, full adder, half subtractor and full subtractor are simulated and synthesized
+using Verilog HDL in Structural, data flow and behavioral models.
