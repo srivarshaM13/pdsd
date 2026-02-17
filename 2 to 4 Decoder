@@ -1,0 +1,22 @@
+2 to 4 Decoder
+
+module decoder (D, A, B);
+output [3:0] D;
+input A, B;
+wire Abar, Bbar;
+not g1(Abar, A);
+not g2 (Bbar, B);
+and g3 ( D[0] Abar, Bbar);
+and g4 ( D[1] Abar, B);
+and g5 (D[2], A, Bbar);
+and g6 (D[3], A, B)
+end module
+
+4 to 2 encoder
+
+module encoder (X,Y, D);
+input [7:0] D;
+output X,Y;
+or g1(X, D[2],D[3]);
+or g2(Y, D[1],D[3]);
+end module
