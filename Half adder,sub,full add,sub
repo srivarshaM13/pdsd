@@ -1,0 +1,32 @@
+PROGRAM
+STRUCTURAL/GATE LEVEL MODELING:
+Half adder
+
+module half_adder(a,b,sum,carry);
+input a,b;
+output sum,carry;
+xor (sum,a,b);
+and (carry,a,b);
+endmodule
+Full adder
+
+module fulladd(sum, cout, a, b, cin);
+input a, b, cin;
+output sum, cout;
+wire s1, c1, c2;
+xor g1(s1, a, b);
+and g2 (c1, a, b);
+xor g3(sum, s1, cin);
+and g4(c2, s1, cin);
+or g5(cout, c2, c1);
+endmodule
+Half subtractor
+
+module half_subtractor(a,b,difference,borrow);
+input a,b;
+output difference,borrow;
+wire abar;
+xor (difference,a,b);
+not (abar, a)
+and (borrow,abar,b);
+endmodule
